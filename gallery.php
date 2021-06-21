@@ -1,3 +1,15 @@
+<?php
+
+$json = file_get_contents("./assets/json/members.json");
+$myJson = json_decode($json);
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +25,9 @@
 
 <body>
 
-
 <div class="container-fluid">
+
+<H1 class="text-center mt-3 mb-5">Bonjour , bienvenue sur votre page</H1>
 
 <div class="row" data-masonry='{"percentPosition": true }'>
     
@@ -48,8 +61,33 @@
       </div>
     </div>
   </div>
-  </div>
+  
 
+  <form action="index.php" method="post" enctype="multipart/form-data">
+                <img id="imgPreview">
+                <input type="file" name="fileToUpload" id="fileToUpload" class= "mt-3"><br>
+                <button type="submit" class="mt-3">Upload</button>
+            </form>
+
+
+
+  <div class="row footer-size align-items-center">
+  <div class="col-md-4 d-flex flex-column align-items-center">
+        <div class="text-center">Accueil</div>
+        <img src="./assets/img/house-door.svg" class="mt-3" alt="heart" width="25px">
+      </div>
+      <div class="col-md-4 d-flex flex-column align-items-center">
+        <div class="text-center">Nouvel ajout</div>
+        <img src="./assets/img/file-plus.svg" class="mt-3" alt="heart" width="25px">
+      </div>
+      <div class="col-md-4 d-flex flex-column align-items-center">
+        <div class="text-center">Profil</div>
+        <img src="./assets/img/person.svg" class="mt-3" alt="heart" width="25px">
+      </div>
+
+
+  </div>
+  </div>
 
 
 </body>

@@ -1,0 +1,36 @@
+{
+    "admins": [
+        {
+            "lastname": "demo",
+            "firstname": "demo",
+            "mail": "demo@demo.com",
+            "password": "$2y$10$8Q6IFGszt4BsLXDmqm5Qte.nRPLz1L/Gt0FvMPXI8KKdlE.1EZati"
+        }
+    ],
+    "members": [
+        {
+            "id": 1,
+            "lastname": "Sparrow",
+            "firstname": "Jack",
+            "formula": "mouette",
+            "mail": "jack.sparrow@gmail.com",
+            "password": "$2y$10$1lS6A7JZ/dRdeat0GmHY/erB3.yKuFZ.uqB.S1EXgv6X.kRkgmYFO"
+        },
+        {
+            "id": 2,
+            "lastname": "Goéland",
+            "firstname": "Monsieur",
+            "formula": "goeland",
+            "mail": "monsieur.goeland@gmail.com",
+            "password": "$2y$10$Jw/4T8AucRbgdpL/.L1/cOEky8d7P5274kRzqKtHcfk5WAPjY2I/q"
+        },
+        {
+            "id": 3,
+            "lastname": "Albator",
+            "firstname": "Harlock",
+            "formula": "albatros",
+            "mail": "harlock.albator@gmail.com",
+            "password": "$2y$10$lhyUXWPfEfJAFGyFhBwAAOrk1NXlQ/IRH9.S4IZYzT2LAb2oM.cv."
+        }
+    ]
+}
