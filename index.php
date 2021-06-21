@@ -24,6 +24,7 @@ if (!empty($_POST) && isset($_POST["login"])) {
                 session_start();
                 $_SESSION["mail"] = $member->mail;
                 $_SESSION["firstname"] = $member->firstname;
+                $_SESSION["id"] = $member->id;
                 header("Location: ./gallery.php");
                 break;
             }
@@ -36,6 +37,7 @@ if (!empty($_POST) && isset($_POST["login"])) {
                     session_start();
                     $_SESSION["mail"] = $member->mail;
                     $_SESSION["firstname"] = $member->firstname;
+                    $_SESSION["id"] = $member->id;
                     header("Location: ./gallery.php");
                     break;
                 }
