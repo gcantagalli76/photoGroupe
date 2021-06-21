@@ -5,6 +5,16 @@ session_start();
 $json = file_get_contents("./assets/json/members.json");
 $myJson = json_decode($json);
 
+
+$scan = scandir("./assets/img/.$_SESSION['id']");
+array_splice($scan, 0, 2);
+
+
+var_dump($_SESSION['id']);
+
+// foreach ($scan as $img) {
+//     echo "<img src='./assets/img/$img'>";
+// }
 ?>
 
 
@@ -29,43 +39,21 @@ $myJson = json_decode($json);
 
 <div class="row" data-masonry='{"percentPosition": true }'>
 
-    <div class="col-sm-6 col-lg-4 mb-4">
-    <div class="card">
-        <img src="https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg" class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-      </div>
-    </div>
 
     <div class="col-sm-6 col-lg-4 mb-4">
     <div class="card">
-        <img src="https://www.jardindesplantesdeparis.fr/sites/jardindesplantes.fr/files/styles/1600x576/public/thumbnails/image/seagullbansin2_web.jpg?itok=bs8XflwM&c=5513a6098ad1ebf711bf7968cbf585fd" class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-      </div>
-    </div>
 
-    <div class="col-sm-6 col-lg-4 mb-4">
-    <div class="card">
-        <img src="https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg" class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-      </div>
-    </div>
+    <?php foreach ($scan as $img) { ?>
 
-    <div class="col-sm-6 col-lg-4 mb-4">
-    <div class="card">
-        <img src="https://i.pinimg.com/originals/ac/45/b6/ac45b6a2d638406c2a7dbb2af4c29881.jpg" class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-      </div>
-    </div>
 
-    <div class="col-sm-6 col-lg-4 mb-4">
-    <div class="card">
-        <img src="https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fprd-cam-website-statics.2Es3.2Eeu-west-1.2Eamazonaws.2Ecom.2Fcontent.2Fuploads.2F2019.2F07.2Fseagull-4143142640.2Ejpg/750x422/quality/80/background-color/ffffff/background-alpha/100/focus-point/320%2C213/crop-zone/0%2C0-640x426/seagull-4143142-640.jpg" class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <img src="./assets/img/<?= $_SESSION['id'].'/'.$img?>" class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
       </div>
     </div>
+    <?php } ?>
+
   </div>
 
 
-  <form action="index.php" method="post" enctype="multipart/form-data">
-                <img id="imgPreview">
-                <input type="file" name="fileToUpload" id="fileToUpload" class= "mt-3"><br>
-                <button type="submit" class="mt-3">Upload</button>
-            </form>
 
 
 
