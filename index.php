@@ -77,7 +77,7 @@ if (!empty($_POST) && isset($_POST["login"])) {
 
           <button type="submit" name="login" class="btn text-white bg-primary mt-3">Se connecter</button>
         </form>
-        <div><?=$connection_msg?></div>
+        <div class="mt-4 mb-3"><?=$connection_msg?></div>
 
       </div>
     </div>
@@ -88,6 +88,9 @@ if (!empty($_POST) && isset($_POST["login"])) {
 
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+
 
 </html>
