@@ -1,11 +1,9 @@
 <?php
 
+session_start();
+
 $json = file_get_contents("./assets/json/members.json");
 $myJson = json_decode($json);
-
-
-
-
 
 ?>
 
@@ -27,10 +25,10 @@ $myJson = json_decode($json);
 
 <div class="container-fluid">
 
-<H1 class="text-center mt-3 mb-5">Bonjour , bienvenue sur votre page</H1>
+<H1 class="text-center mt-3 mb-5">Bonjour <?=$_SESSION["firstname"]?>, bienvenue sur votre page</H1>
 
 <div class="row" data-masonry='{"percentPosition": true }'>
-    
+
     <div class="col-sm-6 col-lg-4 mb-4">
     <div class="card">
         <img src="https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg" class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -61,7 +59,7 @@ $myJson = json_decode($json);
       </div>
     </div>
   </div>
-  
+
 
   <form action="index.php" method="post" enctype="multipart/form-data">
                 <img id="imgPreview">
@@ -95,7 +93,7 @@ $myJson = json_decode($json);
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
-  
+
 
 
 
