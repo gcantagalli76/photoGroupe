@@ -1,15 +1,51 @@
 <?php
 
-if (!empty($_POST) && isset($_POST["login"])) {
-    $valid_mail = filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL);
-    $passwordsList = json_decode("./assets/json/members.json");
-    if (!$passwordsList) {
-        $valid_pass = isset($_POST["password"]);
-    }
+$session = [];
 
-    if ($valid_mail && $valid_pass) {
-        session_start(["mail" => $_POST["mail"], "password" => $_POST["password"]]);
-        header("Location: ./gallery.php");
+$connection_msg = "";
+$connection_error = "Une erreur est survenue, merci de réessayer ultérieurement.";
+$connection_noMatch = "Adresse e-mail ou mot de passe incorrect.";
+
+// faut un post et que ce soit un post de login
+if (!empty($_POST) && isset($_POST["login"])) {
+    $members_json = file_get_contents("./assets/json/members.json");
+    $allMembers = json_decode($members_json);
+
+    if (!$allMembers) { # s'il n'y a aucune erreur avec le JSON
+    $connection_msg = $connection_error;
+    } elseif (empty($_POST["password"]) || empty($_POST["mail"])) { # si le post de password n'existe pas
+    $connection_msg = $connection_noMatch;
+    } else { # si au moins le mail est valide
+    $match = false;
+        // admin
+        foreach ($allMembers->admins as $admin) {
+            if (password_verify($_POST["password"], $member->password) && $_POST["mail"] == $member->mail) {
+                $match = true;
+                session_start();
+                $_SESSION["mail"] = $member->mail;
+                $_SESSION["firstname"] = $member->firstname;
+                header("Location: ./gallery.php");
+                break;
+            }
+        }
+        if (!$match) { # si aucun admin n'a été trouvé
+        // members
+            foreach ($allMembers->members as $member) {
+                if (password_verify($_POST["password"], $member->password) && $_POST["mail"] == $member->mail) {
+                    $match = true;
+                    session_start();
+                    $_SESSION["mail"] = $member->mail;
+                    $_SESSION["firstname"] = $member->firstname;
+                    header("Location: ./gallery.php");
+                    break;
+                }
+            }
+        }
+
+        if (!$match) {
+            $connection_msg = $connection_noMatch;
+        }
+
     }
 }
 
@@ -32,16 +68,16 @@ if (!empty($_POST) && isset($_POST["login"])) {
 <div class="row justify-content-center h-100 align-items-center">
       <div class="col-sm-3 bg-light border">
         <h1>Connectez-vous à votre compte</h1>
+        <form action="./" method="POST">
+          <label class="form-label mt-4 d-flex justify-content-start" name>Adresse e-mail :</label>
+          <input type="email" class="form-control box" name="mail">
 
-        <label class="form-label mt-4 d-flex justify-content-start" name>Adresse e-mail :</label>
-        <input type="email" class="form-control box" name="mail">
+          <label class="form-label mt-2 d-flex justify-content-start">Mot de passe :</label>
+          <input type="password" class="form-control box" name="password">
 
-        <label class="form-label mt-2 d-flex justify-content-start">Mot de passe :</label>
-        <input type="password" class="form-control box" name="password">
-
-        <button type="submit" class="btn text-white bg-primary mt-3">Se connecter</button>
-
-        <div class="mt-4 mb-3">Pas encore membre ? Créez votre compte !</div>
+          <button type="submit" name="login" class="btn text-white bg-primary mt-3">Se connecter</button>
+        </form>
+        <div><?=$connection_msg?></div>
 
       </div>
     </div>

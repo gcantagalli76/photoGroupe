@@ -1,3 +1,3 @@
 <?php
-
-echo $_SESSION["mail"] . $_SESSION["password"];
+session_start();
+echo $_SESSION["mail"] . $_SESSION["firstname"];
