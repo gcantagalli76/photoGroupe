@@ -1,6 +1,7 @@
 {
     "admins": [
         {
+            "id": 0,
             "lastname": "demo",
             "firstname": "demo",
             "mail": "demo@demo.com",

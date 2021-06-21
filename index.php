@@ -1,5 +1,13 @@
 <?php
 
+// $scan = scandir("./assets/img");
+// array_splice($scan, 0, 2);
+// foreach ($scan as $img) {
+//     echo "<img src='./assets/img/$img'>";
+// }
+
+// die;
+
 $session = [];
 
 $connection_msg = "";
@@ -24,6 +32,7 @@ if (!empty($_POST) && isset($_POST["login"])) {
                 session_start();
                 $_SESSION["mail"] = $member->mail;
                 $_SESSION["firstname"] = $member->firstname;
+                $_SESSION["id"] = $member->id;
                 header("Location: ./gallery.php");
                 break;
             }
@@ -36,6 +45,7 @@ if (!empty($_POST) && isset($_POST["login"])) {
                     session_start();
                     $_SESSION["mail"] = $member->mail;
                     $_SESSION["firstname"] = $member->firstname;
+                    $_SESSION["id"] = $member->id;
                     header("Location: ./gallery.php");
                     break;
                 }
