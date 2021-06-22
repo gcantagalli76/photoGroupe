@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!empty($_POST) && isset($_POST["logout"]) && !empty($_SESSION)) {
+if ((!empty($_POST) && isset($_POST["logout"]) && !empty($_SESSION)) || empty($_SESSION)) {
     session_destroy();
     header("Location: ./index.php");
     exit();

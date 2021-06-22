@@ -25,7 +25,7 @@ if (!empty($_POST) && isset($_POST["login"])) {
     $members_json = file_get_contents("./assets/json/members.json");
     $allMembers = json_decode($members_json);
 
-    if (!$allMembers) { # s'il n'y a aucune erreur avec le JSON
+    if (!$members_json || !$allMembers) { # s'il n'y a aucune erreur avec le JSON
     $connection_msg = $connection_error;
     } elseif (empty($_POST["password"]) || empty($_POST["mail"])) { # si le post de password n'existe pas
     $connection_msg = $connection_noMatch;
@@ -54,21 +54,15 @@ if (!empty($_POST) && isset($_POST["login"])) {
     }
 }
 
+include "header.php";
 ?>
-<!DOCTYPE html>
-<html lang="en" class="home">
-<head class="home">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./assets/css/style.css" rel="stylesheet">
-    <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-
-<div class="container-fluid text-center h-100 align-items-center">
+<style>
+  html,
+  body {
+    height: 100%;
+  }
+</style>
+<div class="container-fluid text-center h-100 align-items-center home">
 
 <div class="row justify-content-center h-100 align-items-center">
       <div class="col-sm-3 bg-light border">
@@ -82,7 +76,7 @@ if (!empty($_POST) && isset($_POST["login"])) {
 
           <button type="submit" name="login" class="btn text-white bg-primary mt-3">Se connecter</button>
         </form>
-        <div class="mt-4 mb-3"><?=$connection_msg?></div>
+        <div class="alert alert-danger mt-4 mb-3"><?=$connection_msg?></div>
 
       </div>
     </div>

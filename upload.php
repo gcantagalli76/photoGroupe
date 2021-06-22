@@ -2,7 +2,10 @@
 
 session_start();
 
-var_dump($_POST);
+if (empty($_SESSION)) {
+    header("Location: ./index.php");
+    exit();
+}
 
 if (isset($_FILES['fileToUpload'])) {
 
@@ -61,8 +64,10 @@ if (isset($_FILES['fileToUpload'])) {
 <body>
 
 
-<div class="container fluid ">
+<div class="container-fluid ">
+
 <div class="row ">
+<a href="./gallery.php">Retour vers la galerie</a>
 <div class="col-sm-12 bg-secondary">
 <h1>Module d'enregistrement d'images</h1>
 <p>Mise en pratique PHP : Upload d'images.</p>

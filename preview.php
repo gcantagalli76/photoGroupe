@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if (empty($_SESSION)) {
+    header("Location: ./index.php");
+    exit();
+}
+
 require "helper.php";
 
 redirectIfNotLogged();
@@ -9,7 +14,6 @@ $document_title = "Preview";
 function getImageAndInfos($img_url)
 {
     $exif = exif_read_data($img_url);
-    var_dump($exif);
     $exif_fileDateTime = date("Y-m-d H:i:s", $exif["FileDateTime"]);
     $exif_fileSize_array = explode(".", strval($exif["FileSize"] / (1024 * 1024)));
     $exif_fileSize = $exif_fileSize_array[0] . "," . substr($exif_fileSize_array[count($exif_fileSize_array) - 1], 0, 2);
@@ -17,7 +21,7 @@ function getImageAndInfos($img_url)
     $exif_width = $exif["COMPUTED"]["Width"];
     $exif_height = $exif["COMPUTED"]["Height"];
     echo <<<IMG
-    <img width="100%" src="$img_url">
+    <img src="$img_url">
     <div class="col-3">
         <h1>Date d'upload</h1>
         <caption>$exif_fileDateTime</caption>
@@ -61,7 +65,7 @@ function getParamImage()
             $sub_folder_scan = scandir("./assets/img/" . $_SESSION["id"]);
             array_splice($sub_folder_scan, 0, 2);
             foreach ($sub_folder_scan as $sub_folder_image) {
-                if (explode(".", pathinfo($sub_folder_image)["filename"])[0] == $_GET["q"]) {
+                if (pathinfo($sub_folder_image)["filename"] == $_GET["q"]) {
                     $fileFound = true;
                     getImageAndInfos("./assets/img/" . $_SESSION["id"] . "/" . $sub_folder_image);
                 }
@@ -77,8 +81,9 @@ function getParamImage()
 
 include "header.php";
 ?>
-<div class="container-fluid">
-    <div class="row picture-preview">
+<div class="container-fluid gallery-preview">
+    <div class="row picture-preview mx-auto">
+        <a href="./gallery.php">Retour vers la galerie</a>
         <?=getParamImage()?>
     </div>
 </div>
