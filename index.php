@@ -60,21 +60,22 @@ include "header.php";
   html,
   body {
     height: 100%;
+    background-image: url("./assets/img/wallpaperbetter.jpg")
   }
 </style>
 <div class="container-fluid text-center h-100 align-items-center home">
 
 <div class="row justify-content-center h-100 align-items-center">
-      <div class="col-sm-3 bg-light border">
-        <h1>Connectez-vous à votre compte</h1>
+      <div class="col-sm-3 border connection background">
+        <h1 class="mt-2 text-white">Connectez-vous à votre compte</h1>
         <form action="./" method="POST">
-          <label class="form-label mt-4 d-flex justify-content-start" name>Adresse e-mail :</label>
+          <label class="form-label mt-4 d-flex justify-content-start text-white" name>Adresse e-mail :</label>
           <input type="email" class="form-control box" name="mail">
 
-          <label class="form-label mt-2 d-flex justify-content-start">Mot de passe :</label>
+          <label class="form-label mt-2 d-flex justify-content-start text-white">Mot de passe :</label>
           <input type="password" class="form-control box" name="password">
 
-          <button type="submit" name="login" class="btn text-white bg-primary mt-3">Se connecter</button>
+          <button type="submit" name="login" class="btn text-white bg-secondary mt-3">Se connecter</button>
         </form>
         <div class="text-danger mt-4 mb-3"><?=$connection_msg?></div>
 
