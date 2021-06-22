@@ -25,30 +25,17 @@ if (!empty($_POST) && isset($_POST["login"])) {
     $connection_msg = $connection_noMatch;
     } else { # si au moins le mail est valide
     $match = false;
-        // admin
-        foreach ($allMembers->admins as $admin) {
+        // members
+        foreach ($allMembers->members as $member) {
             if (password_verify($_POST["password"], $member->password) && $_POST["mail"] == $member->mail) {
                 $match = true;
                 session_start();
                 $_SESSION["mail"] = $member->mail;
                 $_SESSION["firstname"] = $member->firstname;
                 $_SESSION["id"] = $member->id;
+                $_SESSION["status"] = $member->status;
                 header("Location: ./gallery.php");
                 break;
-            }
-        }
-        if (!$match) { # si aucun admin n'a été trouvé
-        // members
-            foreach ($allMembers->members as $member) {
-                if (password_verify($_POST["password"], $member->password) && $_POST["mail"] == $member->mail) {
-                    $match = true;
-                    session_start();
-                    $_SESSION["mail"] = $member->mail;
-                    $_SESSION["firstname"] = $member->firstname;
-                    $_SESSION["id"] = $member->id;
-                    header("Location: ./gallery.php");
-                    break;
-                }
             }
         }
 

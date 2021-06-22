@@ -1,16 +1,17 @@
 {
-    "admins": [
-        {
-            "id": 0,
-            "lastname": "demo",
-            "firstname": "demo",
-            "mail": "demo@demo.com",
-            "password": "$2y$10$8Q6IFGszt4BsLXDmqm5Qte.nRPLz1L/Gt0FvMPXI8KKdlE.1EZati"
-        }
-    ],
     "members": [
         {
+            "id": 0,
+            "status": "admin",
+            "lastname": "demo",
+            "firstname": "demo",
+            "formula": "all",
+            "mail": "demo@demo.com",
+            "password": "$2y$10$8Q6IFGszt4BsLXDmqm5Qte.nRPLz1L/Gt0FvMPXI8KKdlE.1EZati"
+        },
+        {
             "id": 1,
+            "status": "user",
             "lastname": "Sparrow",
             "firstname": "Jack",
             "formula": "mouette",
@@ -19,6 +20,7 @@
         },
         {
             "id": 2,
+            "status": "user",
             "lastname": "Goéland",
             "firstname": "Michel",
             "formula": "goeland",
@@ -27,6 +29,7 @@
         },
         {
             "id": 3,
+            "status": "user",
             "lastname": "Albator",
             "firstname": "Harlock",
             "formula": "albatros",

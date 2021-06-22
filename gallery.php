@@ -2,15 +2,54 @@
 
 session_start();
 
-$json = file_get_contents("./assets/json/members.json");
-$myJson = json_decode($json);
+function getUserImagesUrl()
+{
+    $json = file_get_contents("./assets/json/members.json");
+    $myJson = json_decode($json)->members;
 
+    $img_folder = scandir("./assets/img/");
+    $sub_folders = [];
 
-$scan = scandir("./assets/img/.$_SESSION['id']");
-array_splice($scan, 0, 2);
+    foreach ($img_folder as $folder) {
+        if (preg_match("/^\d+$/", $folder)) {
+            $sub_folders[] = $folder;
+        }
+    }
 
+    var_dump($_SESSION["status"]);
 
-var_dump($_SESSION['id']);
+    // dans le cas de l'admin
+    if ($_SESSION["status"] == "admin") {
+        foreach ($sub_folders as $sub_folder) {
+            $sub_folder_scan = scandir("./assets/img/" . $sub_folder);
+            array_splice($sub_folder_scan, 0, 2);
+            foreach ($sub_folder_scan as $sub_folder_images) {
+                $src = "./assets/img/" . $sub_folder . "/" . $sub_folder_images . "";
+                echo <<<IMG
+              <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card">
+                  <img src='$src'class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+                </div>
+              </div>
+              IMG;
+            }
+        }
+
+    } else { # dans le cas des membres
+    foreach ($myJson->members as $member) {
+        // if ($_SESSION["id"] == $member->id) {
+        //     if(in_array($_SESSION["id"], $sub_folders)
+        // }
+    }
+    }
+
+}
+
+// $json = file_get_contents("./assets/json/members.json");
+// $myJson = json_decode($json);
+
+// $scan = scandir("./assets/img/$_SESSION['id']");
+// array_splice($scan, 0, 2);
 
 // foreach ($scan as $img) {
 //     echo "<img src='./assets/img/$img'>";
@@ -39,23 +78,9 @@ var_dump($_SESSION['id']);
 
 <div class="row" data-masonry='{"percentPosition": true }'>
 
+  <?=getUserImagesUrl()?>
 
-    <div class="col-sm-6 col-lg-4 mb-4">
-    <div class="card">
-
-    <?php foreach ($scan as $img) { ?>
-
-
-        <img src="./assets/img/<?= $_SESSION['id'].'/'.$img?>" class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-      </div>
-    </div>
-    <?php } ?>
-
-  </div>
-
-
-
-
+</div>
 
   <div class="row footer-size align-items-center">
   <div class="col-md-4 d-flex flex-column align-items-center">
