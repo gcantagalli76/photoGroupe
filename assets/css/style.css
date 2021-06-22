@@ -3,10 +3,12 @@
     height: 100%;
 }
 
-.footer-size {
-    height: 120px;
-    /* background-color: rgb(67, 139, 211); */
-    margin-top: 5em;
+
+body>div>div.row.footer-size.align-items-center.fixed-bottom.mt-5 {
+    height: 5rem;
+    background-color: rgb(80, 129, 161);
+    margin-top: 20rem;
+    color: white;
 }
 
 

@@ -3,6 +3,11 @@ session_start();
 
 require "helper.php";
 
+function getImageAndInfos()
+{
+
+}
+
 function getParamImage()
 {
     $sub_folders = getImgPicturesSubFolders();
@@ -19,14 +24,28 @@ function getParamImage()
                         $exif = exif_read_data($img_url);
                         var_dump($exif);
                         $exif_fileDateTime = date("Y-m-d H:i:s", $exif["FileDateTime"]);
-                        $exif_fileSize = $exif["FileSize"] / (1024 * 1024);
+                        $exif_fileSize_array = explode(".", strval($exif["FileSize"] / (1024 * 1024)));
+                        $exif_fileSize = $exif_fileSize_array[0] . "," . substr($exif_fileSize_array[count($exif_fileSize_array) - 1], 0, 2);
+                        $exif_mime = explode("/", $exif["MimeType"])[1];
+                        $exif_width = $exif["COMPUTED"]["Width"];
+                        $exif_height = $exif["COMPUTED"]["Height"];
                         echo <<<IMG
                         <img width="100%" src="$img_url">
-                        <div col-6>
-                            <caption>Date d'upload: $exif_fileDateTime</caption>
+                        <div class="col-3">
+                            <h1>Date d'upload</h1>
+                            <caption>$exif_fileDateTime</caption>
+                            </div>
+                        <div class="col-3">
+                            <h1>Taille de l'image</h1>
+                            <caption>$exif_width x $exif_height</caption>
                         </div>
-                        <div col-6>
-                            <caption>Poids de l'image: $exif_fileSize Mo</caption>
+                        <div class="col-3">
+                            <h1>Poids de l'image</h1>
+                            <caption>$exif_fileSize Mo</caption>
+                            </div>
+                            <div class="col-3">
+                            <h1>Type d'image</h1>
+                            <caption>$exif_mime</caption>
                         </div>
                         IMG;
                     }
@@ -41,17 +60,12 @@ function getParamImage()
     }
 }
 
+include "header.php";
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?=getParamImage()?>
-</body>
-</html>
+<div class="container-fluid">
+    <div class="row picture-preview">
+        <?=getParamImage()?>
+    </div>
+</div>
+<?php
+include "footer.php";
