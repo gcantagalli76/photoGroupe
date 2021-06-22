@@ -13,3 +13,10 @@ function getImgPicturesSubFolders()
 
     return $res;
 }
+
+function redirectIfNotLogged() {
+    if (empty($_SESSION)) {
+        header("Location: ./index.php");
+        exit();
+    }
+}
