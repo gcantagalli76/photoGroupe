@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // $scan = scandir("./assets/img");
 // array_splice($scan, 0, 2);
@@ -7,6 +8,11 @@
 // }
 
 // die;
+
+if (!empty($_SESSION)) {
+    header("Location: ./gallery.php");
+    exit();
+}
 
 $session = [];
 
