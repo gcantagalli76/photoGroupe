@@ -2,12 +2,10 @@
 
 session_start();
 
-if (empty($_SESSION)) {
-    header("Location: ./index.php");
-    exit();
-}
-
 require "helper.php";
+
+redirectIfNotLogged();
+$document_title = "Galerie";
 
 function getUserImagesUrl()
 {
@@ -62,37 +60,16 @@ function getUserImagesUrl()
     }
 }
 
+require "header.php";
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <link href="./assets/css/style.css" rel="stylesheet">
-  <title>Document</title>
-</head>
-
-<body>
-  <div class="container-fluid">
-    <H1 class="text-center mt-3 mb-5">Bonjour <?=$_SESSION["firstname"]?>, bienvenue sur votre page</H1>
-    <div class="row" data-masonry='{"percentPosition": true }'>
-      <?=getUserImagesUrl()?>
-    </div>
-    <?php include "navbar.php"?>
+<div class="container-fluid">
+  <H1 class="text-center mt-3 mb-5">Bonjour <?=$_SESSION["firstname"]?>, bienvenue sur votre page</H1>
+  <div class="row" data-masonry='{"percentPosition": true }'>
+    <?=getUserImagesUrl()?>
   </div>
-</body>
-
+  <?php include "navbar.php"?>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
-
-
-
-
-</html>
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+<?php require "footer.php"?>
