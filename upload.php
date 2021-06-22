@@ -2,10 +2,8 @@
 
 session_start();
 
-if (empty($_SESSION)) {
-    header("Location: ./index.php");
-    exit();
-}
+require "helper.php";
+redirectIfNotLogged();
 
 if (isset($_FILES['fileToUpload'])) {
 
@@ -51,16 +49,18 @@ if (isset($_FILES['fileToUpload'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Formulaire image</title>
 
 </head>
+
 <body>
 
 
@@ -93,7 +93,8 @@ if (isset($_FILES['fileToUpload'])) {
 
     <?php include "navbar.php"?>
 
-<script src="./assets/js/uploadPreview.js"></script>
+    <script src="./assets/js/uploadPreview.js"></script>
 
 </body>
+
 </html>

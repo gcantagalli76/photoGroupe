@@ -76,20 +76,13 @@ include "header.php";
 
           <button type="submit" name="login" class="btn text-white bg-primary mt-3">Se connecter</button>
         </form>
-        <div class="alert alert-danger mt-4 mb-3"><?=$connection_msg?></div>
+        <div class="text-danger mt-4 mb-3"><?=$connection_msg?></div>
 
       </div>
     </div>
     </div>
 
 
-
-
-</body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
-
-
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<?php require "footer.php"?>
