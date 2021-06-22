@@ -2,33 +2,29 @@
 
 session_start();
 
+require "helper.php";
+
 function getUserImagesUrl()
 {
     $json = file_get_contents("./assets/json/members.json");
     $myJson = json_decode($json)->members;
 
-    $img_folder = scandir("./assets/img/");
-    $sub_folders = [];
-
-    foreach ($img_folder as $folder) {
-        if (preg_match("/^\d+$/", $folder)) {
-            $sub_folders[] = $folder;
-        }
-    }
-
-    var_dump($_SESSION["status"]);
+    $sub_folders = getImgPicturesSubFolders();
 
     // dans le cas de l'admin
     if ($_SESSION["status"] == "admin") {
         foreach ($sub_folders as $sub_folder) {
             $sub_folder_scan = scandir("./assets/img/" . $sub_folder);
             array_splice($sub_folder_scan, 0, 2);
-            foreach ($sub_folder_scan as $sub_folder_images) {
-                $src = "./assets/img/" . $sub_folder . "/" . $sub_folder_images . "";
+            foreach ($sub_folder_scan as $sub_folder_image) {
+                $src = "./assets/img/" . $sub_folder . "/" . $sub_folder_image . "";
+                $filename = pathinfo($sub_folder_image)["filename"];
                 echo <<<IMG
-              <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="col-sm-6 col-lg-4 mb-4">
                 <div class="card">
-                  <img src='$src'class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+                  <a href="./preview.php?q=$filename">
+                    <img src='$src'class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+                  </a>
                 </div>
               </div>
               IMG;
@@ -37,8 +33,8 @@ function getUserImagesUrl()
 
     } else { # dans le cas des membres
     foreach ($myJson->members as $member) {
-        // if ($_SESSION["id"] == $member->id) {
-        //     if(in_array($_SESSION["id"], $sub_folders)
+        // if$_SESSION["id"] == $member->id) {
+        //     if(in (_array($_SESSION["id"], $sub_folders)
         // }
     }
     }
