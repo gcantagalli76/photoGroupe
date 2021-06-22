@@ -1,18 +1,22 @@
-$(function() {
-	/* 
-	Il faut créer au préalable un élément de type <img class="preview" /> dans votre code html.
-	Il vous permettra d'afficher l'aperçu de l'image.
-	Vous allez pouvoir modifier la taille via un css respectif.
+/*
+_________________________________________________________________________________________________________________________
 
-	Pensez également à mettre un data preview à votre input de type file : data-preview=".preview"
-	*/
+-------------------------------------------------------------------------------------------------------------------------
+Il faut créer au préalable un élément de type <img id="preview"> dans votre code html.
+Celui-ci vous permettra d'afficher l'aperçu de l'image.
+Vous allez pouvoir modifier les dimensions de l'aperçu via un css respectif : "uploadPreview.css" fourni dans le dossier.
 
-	$("input[data-preview]").change(function() {
-		var input = $(this);
-		var oFReader = new FileReader();
-		oFReader.readAsDataURL(this.files[0]);
-		oFReader.onload	= function(oFREvent) {
-			$(input.data('preview')).attr('src', oFREvent.target.result);
-		};
-	});
+Il faut également que votre input soit de cette forme :
+<input type="file" name="fileToUpload" id="fileToUpload">
+-------------------------------------------------------------------------------------------------------------------------
+_________________________________________________________________________________________________________________________
+*/
+
+fileToUpload.addEventListener("change", function () {
+	let input = this;
+	let oFReader = new FileReader(); // on créé un nouvel objet FileReader
+	oFReader.readAsDataURL(this.files[0]);
+	oFReader.onload = function (oFREvent) {
+		imgPreview.setAttribute('src', oFREvent.target.result);
+	};
 })
