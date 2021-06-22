@@ -16,15 +16,13 @@ function getUserImagesUrl()
         }
     }
 
-    var_dump($_SESSION["status"]);
-
     // dans le cas de l'admin
     if ($_SESSION["status"] == "admin") {
         foreach ($sub_folders as $sub_folder) {
             $sub_folder_scan = scandir("./assets/img/" . $sub_folder);
             array_splice($sub_folder_scan, 0, 2);
-            foreach ($sub_folder_scan as $sub_folder_images) {
-                $src = "./assets/img/" . $sub_folder . "/" . $sub_folder_images . "";
+            foreach ($sub_folder_scan as $sub_folder_image) {
+                $src = "./assets/img/" . $sub_folder . "/" . $sub_folder_image . "";
                 echo <<<IMG
               <div class="col-sm-6 col-lg-4 mb-4">
                 <div class="card">
@@ -36,24 +34,23 @@ function getUserImagesUrl()
         }
 
     } else { # dans le cas des membres
-    foreach ($myJson->members as $member) {
-        // if ($_SESSION["id"] == $member->id) {
-        //     if(in_array($_SESSION["id"], $sub_folders)
-        // }
+        $sub_folder = $_SESSION['id'];
+        $sub_folder_scan = scandir("./assets/img/" . $sub_folder);
+        array_splice($sub_folder_scan, 0, 2);       
+        foreach ($sub_folder_scan as $sub_folder_image) {
+            $src = "./assets/img/" . $_SESSION['id'] . "/" . $sub_folder_image . "";
+            echo <<<IMG
+          <div class="col-sm-6 col-lg-4 mb-4">
+            <div class="card">
+              <img src='$src'class="card-img-top" width="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+            </div>
+          </div>
+          IMG;
+        }
     }
-    }
+    } 
 
-}
 
-// $json = file_get_contents("./assets/json/members.json");
-// $myJson = json_decode($json);
-
-// $scan = scandir("./assets/img/$_SESSION['id']");
-// array_splice($scan, 0, 2);
-
-// foreach ($scan as $img) {
-//     echo "<img src='./assets/img/$img'>";
-// }
 ?>
 
 
@@ -82,24 +79,24 @@ function getUserImagesUrl()
 
 </div>
 
-  <div class="row footer-size align-items-center">
+
+  <div class="row footer-size align-items-center fixed-bottom mt-5">
   <div class="col-md-4 d-flex flex-column align-items-center">
         <div class="text-center">Accueil</div>
-        <img src="./assets/img/house-door.svg" class="mt-3" alt="heart" width="25px">
+        <a href="index.php"><img src="./assets/img/house-door.svg" class="mt-3" alt="heart" width="30px" type="button"></a>
       </div>
       <div class="col-md-4 d-flex flex-column align-items-center">
         <div class="text-center">Nouvel ajout</div>
-        <img src="./assets/img/file-plus.svg" class="mt-3" alt="heart" width="25px">
+        <a href="upload.php"><img src="./assets/img/file-plus.svg" class="mt-3" alt="heart" width="30px"></a>
       </div>
       <div class="col-md-4 d-flex flex-column align-items-center">
         <div class="text-center">Profil</div>
-        <img src="./assets/img/person.svg" class="mt-3" alt="heart" width="25px">
+        <a href="user.php"><img src="./assets/img/person.svg" class="mt-3" alt="heart" width="30px"></a>
       </div>
 
 
   </div>
   </div>
-
 
 </body>
 
