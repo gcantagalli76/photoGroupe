@@ -37,9 +37,11 @@ if (!empty($_POST) && isset($_POST["login"])) {
                 $match = true;
                 session_start();
                 $_SESSION["mail"] = $member->mail;
+                $_SESSION["lastname"] = $member->lastname;
                 $_SESSION["firstname"] = $member->firstname;
                 $_SESSION["id"] = $member->id;
                 $_SESSION["status"] = $member->status;
+                $_SESSION["formula"] = $member->formula;
                 header("Location: ./gallery.php");
                 break;
             }

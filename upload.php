@@ -1,30 +1,47 @@
 <?php
 
+session_start();
+
 if(isset($_FILES['fileToUpload'])){
+
 
 $tmpName = $_FILES['fileToUpload']['tmp_name'];
 $name = $_FILES['fileToUpload']['name'];
 $size = $_FILES['fileToUpload']['size']; 
+$histoSize = $_SESSION["size"];
 $error = $_FILES['fileToUpload']['error']; 
-
 $tabExtension = explode('.',$name); // .JPG .Jpg
 $extension = strtolower (end($tabExtension));//jpg gif
 $extensions = ['jpg','png', 'jpeg', 'gif'];
-$maxSize = 1000000;
 $uniqueName = uniqid('', true); // 5945499515195
 $concatName = $uniqueName. '.' .$extension; // 654951965159.jpg
 
+if ($_SESSION["formula"] == "mouette") {
+    $maxSize = 5000000;
+    $limitSize = "5Mo";
+}elseif ($_SESSION["formula"] == "goeland") {
+    $maxSize = 10000000;
+    $limitSize = "10Mo";
+}elseif ($_SESSION["formula"] == "albatros") {
+    $maxSize = 20000000;
+    $limitSize = "20Mo";
+}elseif ($_SESSION["formula"] == "all") {
+    $maxSize = 20000000000;
+    $limitSize = "illimitée";
+}
 
-if (in_array($extension,$extensions) && $size <= $maxSize) {
-    move_uploaded_file($tmpName,'./assets/img/'.$concatName);
+
+if (in_array($extension,$extensions) && $size + $histoSize <= $maxSize) {
+    $_SESSION['size'] += $size;
+    move_uploaded_file($tmpName,'./assets/img/'.$_SESSION["id"].'/'.$concatName);
     $answerPositive = "Votre fichier $concatName est bien uploader";
-} elseif ($size > $maxSize) {
-    $answerNegative = "Désolé votre fichier doit faire moins de 1 Mo";
+} elseif ($size + $histoSize > $maxSize) {
+    $answerNegative = "Désolé vous avez dépassé la taille maximale autorisée de " . $limitSize;
 } elseif ($error == 4) {
     $answerNegative = "Veuillez sélectionner un fichier";
 } elseif (!in_array($extension,$extensions)) {
     $answerNegative = "Votre fichier nest pas une image";
-};
+}
 };
 
 ?>
@@ -68,6 +85,7 @@ if (in_array($extension,$extensions) && $size <= $maxSize) {
     </div>
     </div>
 
+    <?php include "navbar.php"?>
 
 <script src="./assets/js/uploadPreview.js"></script>
 
