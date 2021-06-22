@@ -82,7 +82,7 @@ if (!empty($_POST) && isset($_POST["login"])) {
 
           <button type="submit" name="login" class="btn text-white bg-primary mt-3">Se connecter</button>
         </form>
-        <div class="mt-4 mb-3"><?=$connection_msg?></div>
+        <div class="mt-4 mb-3 error"><?=$connection_msg?></div>
 
       </div>
     </div>
