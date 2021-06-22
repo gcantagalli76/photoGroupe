@@ -4,6 +4,7 @@ session_start();
 
 require "helper.php";
 redirectIfNotLogged();
+$document_title = "Formulaire image";
 
 if (isset($_FILES['fileToUpload'])) {
 
@@ -44,57 +45,32 @@ if (isset($_FILES['fileToUpload'])) {
         $answerNegative = "Votre fichier nest pas une image";
     }
 }
-;
 
+require "header.php";
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Formulaire image</title>
-
-</head>
-
-<body>
-
-
-<div class="container-fluid ">
-
-<div class="row ">
-<a href="./gallery.php">Retour vers la galerie</a>
-<div class="col-sm-12 bg-secondary">
-<h1>Module d'enregistrement d'images</h1>
-<p>Mise en pratique PHP : Upload d'images.</p>
-</div>
-</div>
-
-<div class="row preview">
-    <div class="col-sm-5 mt-5">
-        <P id="bienvenue">Veuillez  choisir une image</P>
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                <img width="100%" id="imgPreview">
-                <input type="file" name="fileToUpload" id="fileToUpload" class= "mt-3"><br>
-                <button type="submit" class="mt-3">Upload</button>
-                <div class= "text-success mt-3"><?=$answerPositive ?? ''?></div>
-                <div class= "text-danger mt-3"><?=$answerNegative ?? ''?></div>
-            </form>
+    <div class="container-fluid upload">
+        <div class="row">
+            <a href="./gallery.php">Retour vers la galerie</a>
+            <div class="col-sm-12 bg-secondary">
+                <h1>Module d'enregistrement d'images</h1>
+                <p>Mise en pratique PHP : Upload d'images.</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-6">
+                <P id="bienvenue">Veuillez  choisir une image</P>
+                <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <input type="file" name="fileToUpload" id="fileToUpload" class= "mt-3"><br>
+                    <button type="submit" class="mt-3">Upload</button>
+                    <div class= "text-success mt-3"><?=$answerPositive ?? ''?></div>
+                    <div class= "text-danger mt-3"><?=$answerNegative ?? ''?></div>
+                </form>
+            </div>
+            <div class="col-6">
+                <img class="mx-auto d-block" width="70%" id="imgPreview">
+            </div>
+        </div>
     </div>
-    <div class="col-sm-9">
-        <img src="" class="">
-    </div>
-    </div>
-    </div>
-
     <?php include "navbar.php"?>
-
     <script src="./assets/js/uploadPreview.js"></script>
-
-</body>
-
-</html>
+<?php require "footer.php"?>

@@ -4,9 +4,10 @@
     color: white;
 }
 
-.preview .content,
-.gallery .gallery-content {
-    margin-bottom: 4rem;
+.upload,
+.gallery-preview,
+.gallery {
+    margin-bottom: 6rem;
 }
 
 .preview {
