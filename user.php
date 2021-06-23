@@ -20,7 +20,7 @@ require "header.php";
 <div class="container-fluid mt-5">
     <div class="row justify-content-center">
         <div class="col-sm-10 backUser border userBox">
-            <h1 class="text-center figcaption text-white">Bienvenue sur votre espace personnel</h1>
+            <h1 class="text-center figcaption text-white">Bienvenue sur votre espace personnel <?=$firstname?></h1>
             <div class="text-center figcaption2 text-white">Vous trouverez ci-dessous les données relatives à votre compte personnel</div>
             <div class="row justify-content-around police mt-4">
                 <div class="col-sm-3 backUser">
@@ -51,7 +51,7 @@ require "header.php";
     <div class="row justify-content-center text-center">
         <div class="col-sm-3d-flex justify-content-center">
         <form action="./user.php" method="POST">
-            <button type="submit" name="logout" class="btn text-white bg-secondary mt-3 mb-3">Déconnexion</button>
+            <button type="submit" name="logout" class="btn text-white bg-secondary mt-3 mb-3 policeButton">Déconnexion</button>
         </form>
     </div>
     </div>
