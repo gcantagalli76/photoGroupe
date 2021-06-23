@@ -36,7 +36,7 @@ if (isset($_FILES['fileToUpload'])) {
     if (in_array($extension, $extensions) && $size + $histoSize <= $maxSize) {
         $_SESSION['size'] += $size;
         move_uploaded_file($tmpName, './assets/img/' . $_SESSION["id"] . '/' . $concatName);
-        $answerPositive = "Votre fichier $concatName est bien uploader";
+        $answerPositive = "Votre fichier $concatName est bien uploadé";
     } elseif ($size + $histoSize > $maxSize) {
         $answerNegative = "Désolé vous avez dépassé la taille maximale autorisée de " . $limitSize;
     } elseif ($error == 4) {
@@ -46,18 +46,34 @@ if (isset($_FILES['fileToUpload'])) {
     }
 }
 
+if ($_SESSION["formula"] == "mouette") {
+    $maxSize = 5000000;
+    $limitSize = "5Mo";
+} elseif ($_SESSION["formula"] == "goeland") {
+    $maxSize = 10000000;
+    $limitSize = "10Mo";
+} elseif ($_SESSION["formula"] == "albatros") {
+    $maxSize = 20000000;
+    $limitSize = "20Mo";
+} elseif ($_SESSION["formula"] == "all") {
+    $maxSize = 20000000000;
+    $limitSize = "illimitée";
+}
+
+$sizeRest = round($maxSize/(1024*1024),2) - round($_SESSION["size"]/(1024*1024),2);
+
 require "header.php";
 ?>
     <div class="container-fluid upload">
         <div class="row">
             <a href="./gallery.php">Retour vers la galerie</a>
-            <div class="col-sm-12 bg-secondary">
-                <h1>Module d'enregistrement d'images</h1>
-                <p>Mise en pratique PHP : Upload d'images.</p>
+            <div class="col-sm-12">
+                <h1 class="figcaption text-center">Page d'upload des nouvelles images</h1>
+                <p class="police">Il vous reste actuellement <?=$sizeRest?> Mo d'espace libre sur vos <?=round($maxSize/(1024*1024))?> Mo</p>
             </div>
         </div>
         <div class="row mt-4">
-            <div class="col-6">
+            <div class="col-6 police">
                 <P id="bienvenue">Veuillez  choisir une image</P>
                 <form action="upload.php" method="post" enctype="multipart/form-data">
                     <input type="file" name="fileToUpload" id="fileToUpload" class= "mt-3"><br>

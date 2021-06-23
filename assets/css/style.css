@@ -1,6 +1,6 @@
 .navbar {
     height: 5rem;
-    background-color: rgb(80, 129, 161);
+    background-color: rgb(119, 127, 138);
     color: white;
 }
 
@@ -48,3 +48,24 @@ div.background {
     font-weight: bold;
     color: #000000;
   }
+
+  @font-face {
+    font-family: "Photographs";
+    src: url(../font/Photographs.ttf) format("truetype");
+}
+
+.figcaption {
+    font-family: "Photographs";
+    font-size: 5em;
+}
+
+.figcaption2 {
+    font-style: italic;
+    font-family: "Photographs";
+    font-size: 3em;
+}
+
+.police {
+    font-family: "Photographs";
+    font-size: 1.5em;
+}
