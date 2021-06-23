@@ -69,12 +69,12 @@ require "header.php";
             <a href="./gallery.php">Retour vers la galerie</a>
             <div class="col-sm-12">
                 <h1 class="figcaption text-center">Page d'upload des nouvelles images</h1>
-                <p class="police">Il vous reste actuellement <?=$sizeRest?> Mo d'espace libre sur vos <?=round($maxSize / (1024 * 1024))?> Mo</p>
+                <p class="police">Il vous reste actuellement <?=$sizeRest?> Mo d'espace libre sur vos <?=round($maxSize / (1024 * 1024))?> Mo utilisables</p>
             </div>
         </div>
         <div class="row mt-4">
             <div class="col-6 police">
-                <P id="bienvenue">Veuillez  choisir une image</P>
+                <P>Veuillez  choisir une image</P>
                 <form action="upload.php" method="post" enctype="multipart/form-data">
                     <input type="file" name="fileToUpload" id="fileToUpload" class= "mt-3"><br>
                     <button type="submit" class="mt-3">Upload</button>
