@@ -11,13 +11,14 @@ function getImageAndInfos($img_url)
 {
     $exif = exif_read_data($img_url);
     $exif_fileDateTime = date("Y-m-d H:i:s", $exif["FileDateTime"]);
-    $exif_fileSize_array = explode(".", strval($exif["FileSize"] / (1024 * 1024)));
-    $exif_fileSize = $exif_fileSize_array[0] . "," . substr($exif_fileSize_array[count($exif_fileSize_array) - 1], 0, 2);
+    // $exif_fileSize_array = explode(".", strval($exif["FileSize"] / (1024 * 1024)));
+    // $exif_fileSize = $exif_fileSize_array[0] . "," . substr($exif_fileSize_array[count($exif_fileSize_array) - 1], 0, 2);
+    $exif_fileSize = preg_replace("/\./", ",", strval(round($exif["FileSize"] / (1024 * 1024), 2)));
     $exif_mime = explode("/", $exif["MimeType"])[1];
     $exif_width = $exif["COMPUTED"]["Width"];
     $exif_height = $exif["COMPUTED"]["Height"];
     echo <<<IMG
-    <img src="$img_url">
+    <img class="gallery-preview-picture" src="$img_url">
     <div class="col-3">
         <h1>Date d'upload</h1>
         <caption>$exif_fileDateTime</caption>
@@ -83,6 +84,7 @@ include "header.php";
         <?=getParamImage()?>
     </div>
 </div>
+<script src="./assets/js/script.js"></script>
 <?php
 include "navbar.php";
 include "footer.php";

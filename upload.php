@@ -56,7 +56,7 @@ require "header.php";
                 <p>Mise en pratique PHP : Upload d'images.</p>
             </div>
         </div>
-        <div class="row mt-4">
+        <div class="row mt-4 flex-column">
             <div class="col-6">
                 <P id="bienvenue">Veuillez  choisir une image</P>
                 <form action="upload.php" method="post" enctype="multipart/form-data">
