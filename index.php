@@ -67,15 +67,15 @@ include "header.php";
 
 <div class="row justify-content-center h-100 align-items-center">
       <div class="col-sm-3 border connection background">
-        <h1 class="mt-2 text-white">Connectez-vous à votre compte</h1>
+        <h1 class="mt-2 text-white figcaption">Connectez-vous à votre compte</h1>
         <form action="./" method="POST">
-          <label class="form-label mt-4 d-flex justify-content-start text-white" name>Adresse e-mail :</label>
+          <label class="form-label mt-4 d-flex justify-content-start text-white police" name>Adresse e-mail :</label>
           <input type="email" class="form-control box" name="mail">
 
-          <label class="form-label mt-2 d-flex justify-content-start text-white">Mot de passe :</label>
+          <label class="form-label mt-2 d-flex justify-content-start text-white police">Mot de passe :</label>
           <input type="password" class="form-control box" name="password">
 
-          <button type="submit" name="login" class="btn text-white bg-secondary mt-3">Se connecter</button>
+          <button type="submit" name="login" class="btn text-white bg-secondary mt-3 policeButton">Se connecter</button>
         </form>
         <div class="text-danger mt-4 mb-3"><?=$connection_msg?></div>
 
