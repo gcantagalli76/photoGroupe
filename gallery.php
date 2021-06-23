@@ -63,7 +63,8 @@ function getUserImagesUrl()
 require "header.php";
 ?>
 <div class="container-fluid gallery">
-  <H1 class="text-center mt-3 mb-5">Bonjour <?=$_SESSION["firstname"]?>, bienvenue sur votre page</H1>
+  <H1 class="text-center mt-3 mb-2 figcaption">Bonjour <?=$_SESSION["firstname"]?> !</H1>
+  <H2 class="text-center mt-1 mb-5 figcaption2">bienvenue sur votre page personnelle</H2>
   <div class="row gallery-content" data-masonry='{"percentPosition": true }'>
     <?=getUserImagesUrl()?>
   </div>
